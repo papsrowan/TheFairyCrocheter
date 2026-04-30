@@ -18,12 +18,10 @@ RETRY_COUNT=0
 
 PRISMA_CMD="node node_modules/prisma/build/index.js"
 
-until $PRISMA_CMD migrate deploy > /tmp/prisma-migrate.log 2>&1 || $PRISMA_CMD db push > /tmp/prisma-push.log 2>&1; do
+until $PRISMA_CMD db push > /tmp/prisma-push.log 2>&1; do
   RETRY_COUNT=$((RETRY_COUNT + 1))
   if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
     echo "❌ Impossible de synchroniser le schema apres $MAX_RETRIES tentatives."
-    echo "----- prisma migrate deploy output -----"
-    cat /tmp/prisma-migrate.log
     echo "----- prisma db push output -----"
     cat /tmp/prisma-push.log
     echo "---------------------------------------"
