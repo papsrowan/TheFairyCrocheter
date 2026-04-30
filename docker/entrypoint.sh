@@ -16,7 +16,9 @@ echo "⏳ Attente de la base et synchronisation du schema Prisma..."
 MAX_RETRIES=30
 RETRY_COUNT=0
 
-until npx prisma migrate deploy > /tmp/prisma-migrate.log 2>&1 || npx prisma db push > /tmp/prisma-push.log 2>&1; do
+PRISMA_CMD="node node_modules/prisma/build/index.js"
+
+until $PRISMA_CMD migrate deploy > /tmp/prisma-migrate.log 2>&1 || $PRISMA_CMD db push > /tmp/prisma-push.log 2>&1; do
   RETRY_COUNT=$((RETRY_COUNT + 1))
   if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
     echo "❌ Impossible de synchroniser le schema apres $MAX_RETRIES tentatives."
