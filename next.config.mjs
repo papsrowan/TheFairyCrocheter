@@ -7,6 +7,9 @@ import withPWA from "next-pwa";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Requis pour Dockerfile: genere .next/standalone
+  output: "standalone",
+
   // @react-pdf/renderer utilise yoga-layout (WASM) — ne pas bundler côté serveur
   experimental: {
     serverComponentsExternalPackages: [
