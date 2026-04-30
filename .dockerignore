@@ -1,0 +1,67 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# .dockerignore — Exclure les fichiers inutiles du contexte de build Docker
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Dépendances Node (reconstruites dans le container)
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+.next
+out
+build
+
+# Environnement local (ne JAMAIS envoyer dans l'image)
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test.local
+# On garde .env.production car il est monté en volume sur le VPS, pas copié
+
+# Outils Git
+.git
+.gitignore
+.gitattributes
+
+# Éditeurs et IDE
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Tests
+/tests
+/coverage
+/playwright-report
+playwright.config.ts
+
+# Documentation et CI
+*.md
+.github
+.claude
+
+# Docker
+# On conserve Dockerfile et docker/entrypoint.sh car requis pendant le build.
+
+# Prisma — fichiers temporaires
+/prisma/*.db
+/prisma/*.db-journal
+
+# Logs et documents générés
+*.log
+/logs/
+/documents/
+/public/documents/
+
+# Sentry
+.sentryclirc
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Scripts de déploiement (pas nécessaires dans l'image)
+deploy.sh
