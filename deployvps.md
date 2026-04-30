@@ -41,6 +41,7 @@ POSTGRES_DB=fairycrocheter
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=change_me_strong_password
 APP_PORT=3001
+AUTO_SEED=true
 AUTH_SECRET=genere_un_secret_fort
 AUTH_URL=http://IP_DU_VPS:3001
 NEXT_PUBLIC_APP_URL=http://IP_DU_VPS:3001
@@ -53,6 +54,12 @@ Le mapping port est configure comme suit dans `docker-compose.yml`:
 ports:
   - "${APP_PORT:-3001}:3000"
 ```
+
+Seed automatique:
+
+- `AUTO_SEED=true` (defaut): initialise les donnees de base au demarrage.
+- `AUTO_SEED=false`: desactive le seed auto.
+- Le seed est idempotent (`upsert`), donc pas de doublons au redemarrage.
 
 Creer un fichier `.env.production` a la racine:
 
@@ -140,4 +147,3 @@ docker compose down -v
 docker volume ls
 docker compose up -d --build
 ```
-

@@ -70,7 +70,7 @@ export function VentesRecentes({ ventes }: Props) {
 
       {ventes.length === 0 ? (
         <div className="px-5 py-8 text-center text-sm text-gray-400">
-          Aucune vente aujourd'hui
+          Aucune vente aujourd&apos;hui
         </div>
       ) : (
         <ul className="divide-y divide-gray-50">

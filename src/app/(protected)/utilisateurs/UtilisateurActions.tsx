@@ -113,13 +113,13 @@ function UserMenu({ user }: { user: UserData }) {
 
 /* ── Bouton + formulaire création ── */
 export function UtilisateurActions({ user }: { user?: UserData }) {
-  if (user) return <UserMenu user={user} />;
-
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({ nom: "", prenom: "", email: "", password: "", role: "CAISSIER" });
+
+  if (user) return <UserMenu user={user} />;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

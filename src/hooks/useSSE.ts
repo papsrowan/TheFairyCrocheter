@@ -8,10 +8,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import type { SSEEventType } from "@/types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type SSEHandler<T = any> = (data: T, raw: MessageEvent) => void;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type HandlerMap = Partial<Record<SSEEventType | "ping", SSEHandler<any>>>;
+type SSEHandler<T = unknown> = (data: T, raw: MessageEvent) => void;
+type HandlerMap = Partial<Record<SSEEventType | "ping", SSEHandler>>;
 
 interface UseSSEOptions {
   channel?:    string;

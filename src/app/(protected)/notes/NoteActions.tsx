@@ -8,6 +8,9 @@ import { Plus, Trash2, Loader2 } from "lucide-react";
 export function NoteActions({ noteId, isDelete }: { noteId?: string; isDelete?: boolean }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ contenu: "", entityType: "general" });
+  const [saving, setSaving] = useState(false);
 
   if (isDelete && noteId) {
     async function handleDelete() {
@@ -28,11 +31,6 @@ export function NoteActions({ noteId, isDelete }: { noteId?: string; isDelete?: 
       </button>
     );
   }
-
-  /* ── Formulaire création ── */
-  const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({ contenu: "", entityType: "general" });
-  const [saving, setSaving] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

@@ -309,7 +309,7 @@ export function ClientForm({ mode, clientId, defaultValues = {}, categories, can
           <div>
             <p className="text-sm font-medium text-gray-800">Consentement RGPD</p>
             <p className="text-xs text-gray-500 mt-0.5">
-              Le client a consenti à l'enregistrement et au traitement de ses données personnelles
+              Le client a consenti a l&apos;enregistrement et au traitement de ses donnees personnelles
               conformément au RGPD.
             </p>
           </div>

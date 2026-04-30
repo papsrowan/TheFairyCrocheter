@@ -187,7 +187,7 @@ export function ClientDetailClient({
                   onClick={() => setConfirmRGPD(true)}
                   className="w-full py-2 text-amber-700 border border-amber-200 bg-amber-50 rounded-lg text-sm font-medium hover:bg-amber-100 transition-colors"
                 >
-                  Droit à l'oubli (RGPD)
+                  Droit a l&apos;oubli (RGPD)
                 </button>
               )}
             </div>
@@ -206,7 +206,7 @@ export function ClientDetailClient({
 
           {canDelete && nbVentes > 0 && (
             <p className="text-xs text-gray-400">
-              Suppression impossible : {nbVentes} vente(s) associée(s). Utilisez l'anonymisation RGPD.
+              Suppression impossible : {nbVentes} vente(s) associee(s). Utilisez l&apos;anonymisation RGPD.
             </p>
           )}
         </div>

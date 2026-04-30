@@ -215,7 +215,7 @@ export function TicketPDF({ vente, entreprise }: TicketPDFProps) {
             {entreprise.piedPageFacture ?? "Merci de votre confiance !"}
           </Text>
           <Text style={[styles.center, styles.small, { marginTop: 2 }]}>
-            Conservez ce ticket comme preuve d'achat
+            Conservez ce ticket comme preuve d&apos;achat
           </Text>
         </View>
       </Page>

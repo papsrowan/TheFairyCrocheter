@@ -39,6 +39,17 @@ else
   exit 1
 fi
 
+# ── Seed automatique idempotent (optionnel) ──────────────────────────────────
+# AUTO_SEED=true (defaut) -> lance l'initialisation des donnees de base.
+# Le script utilise des upserts, donc il ne duplique pas les donnees.
+if [ "${AUTO_SEED:-true}" = "true" ]; then
+  echo "🌱 Initialisation des donnees (seed idempotent)..."
+  node prisma/seed.runtime.mjs
+  echo "✅ Seed execute"
+else
+  echo "⏭️  Seed saute (AUTO_SEED=${AUTO_SEED})"
+fi
+
 # ── Démarrer l'application ────────────────────────────────────────────────────
 echo "▶️  Démarrage de Next.js sur le port $PORT..."
 exec "$@"

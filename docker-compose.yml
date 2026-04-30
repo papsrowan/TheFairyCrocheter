@@ -29,6 +29,7 @@ services:
       NODE_ENV: production
       PORT: 3000
       HOSTNAME: 0.0.0.0
+      AUTO_SEED: ${AUTO_SEED:-true}
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-fairycrocheter}?schema=public
     depends_on:
       db:
