@@ -73,6 +73,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 # Copier Prisma (client généré + schema pour les migrations)
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=deps    --chown=nextjs:nodejs /app/node_modules/bcryptjs ./node_modules/bcryptjs
 COPY --from=deps    --chown=nextjs:nodejs /app/prisma ./prisma
 # CLI prisma (nécessaire pour `prisma migrate deploy` au démarrage)
 COPY --from=deps    --chown=nextjs:nodejs /app/node_modules/prisma ./node_modules/prisma
