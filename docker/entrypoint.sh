@@ -10,34 +10,26 @@ echo "🚀 TheFairyCrocheter — Démarrage..."
 echo "📅 $(date)"
 echo "🌍 NODE_ENV: $NODE_ENV"
 
-# ── Attendre que la base de données soit disponible ──────────────────────────
-echo "⏳ Vérification de la connexion à la base de données..."
+# ── Attendre la DB + appliquer les migrations (retry) ────────────────────────
+echo "⏳ Attente de la base et application des migrations Prisma..."
 
 MAX_RETRIES=30
 RETRY_COUNT=0
 
-until echo "SELECT 1;" | npx prisma db execute --stdin > /dev/null 2>&1; do
+until npx prisma migrate deploy > /tmp/prisma-migrate.log 2>&1; do
   RETRY_COUNT=$((RETRY_COUNT + 1))
   if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
-    echo "❌ Impossible de se connecter à la base de données après $MAX_RETRIES tentatives."
+    echo "❌ Impossible d'appliquer les migrations apres $MAX_RETRIES tentatives."
+    echo "----- prisma migrate deploy output -----"
+    cat /tmp/prisma-migrate.log
+    echo "---------------------------------------"
     exit 1
   fi
   echo "🔄 Tentative $RETRY_COUNT/$MAX_RETRIES — Nouvel essai dans 3s..."
   sleep 3
 done
 
-echo "✅ Base de données accessible !"
-
-# ── Exécuter les migrations Prisma ───────────────────────────────────────────
-echo "🗄️  Exécution des migrations Prisma..."
-npx prisma migrate deploy
-
-if [ $? -eq 0 ]; then
-  echo "✅ Migrations appliquées avec succès !"
-else
-  echo "❌ Erreur lors des migrations Prisma"
-  exit 1
-fi
+echo "✅ Migrations appliquees avec succes !"
 
 # ── Seed automatique idempotent (optionnel) ──────────────────────────────────
 # AUTO_SEED=true (defaut) -> lance l'initialisation des donnees de base.
