@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("🌱 Seed runtime: initialisation des donnees de base...");
 
-  const adminPasswordHash = await hash("Admin@2024!", 12);
+  const adminPasswordHash = await bcrypt.hash("Admin@2024!", 12);
 
   const admin = await prisma.user.upsert({
     where: { email: "admin@gestion.fr" },
