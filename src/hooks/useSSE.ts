@@ -8,8 +8,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import type { SSEEventType } from "@/types";
 
-type SSEHandler<T = unknown> = (data: T, raw: MessageEvent) => void;
-type HandlerMap = Partial<Record<SSEEventType | "ping", SSEHandler>>;
+type SSEHandler<T = any> = (data: T, raw: MessageEvent) => void;
+type HandlerMap = Partial<Record<SSEEventType | "ping", SSEHandler<any>>>;
 
 interface UseSSEOptions {
   channel?:    string;
