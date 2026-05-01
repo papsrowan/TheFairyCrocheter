@@ -35,7 +35,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "${APP_PORT:-3001}:3000"
+      - "127.0.0.1:3001:3000"
     volumes:
       - app-documents:/app/documents
       - app-logs:/app/logs
